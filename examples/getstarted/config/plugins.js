@@ -1,6 +1,17 @@
 'use strict';
 
+const path = require('path');
+
 module.exports = () => ({
+  'audit-logs': {
+    enabled: true,
+    resolve: path.resolve(__dirname, '../../../packages/plugins/audit-logs'),
+    config: {
+      enabled: true,
+      excludeContentTypes: [],
+      retentionDays: 90,
+    },
+  },
   graphql: {
     enabled: true,
     config: {

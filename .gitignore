@@ -10,11 +10,13 @@ Icon
 .Trashes
 ._*
 
+
 ############################
 # Linux
 ############################
 
 *~
+
 
 ############################
 # Windows
@@ -28,6 +30,7 @@ $RECYCLE.BIN/
 *.msi
 *.msm
 *.msp
+
 
 ############################
 # Packages
@@ -57,6 +60,7 @@ $RECYCLE.BIN/
 *.out
 *.pid
 
+
 ############################
 # Logs and databases
 ############################
@@ -64,17 +68,20 @@ $RECYCLE.BIN/
 .tmp
 *.log
 *.sql
-!.github/workflows/db/**/*.sql
 *.sqlite
+*.sqlite3
+
 
 ############################
 # Misc.
 ############################
 
 *#
+ssl
 .idea
 nbproject
-.eslintcache
+public/uploads/*
+!public/uploads/.gitkeep
 
 ############################
 # Node.js
@@ -85,85 +92,259 @@ lcov.info
 pids
 logs
 results
-build
 node_modules
 .node_history
-package-lock.json
-**/package-lock.json
-!docs/package-lock.json
-*.heapsnapshot
 
 ############################
 # Tests
 ############################
 
-test-apps
 coverage
+.nyc_output
+
 
 ############################
-# Builds
+# Strapi
 ############################
 
-packages/generators/app/files/public/
-schema.graphql
+.env
+license.txt
+exports
+*.cache
 dist
-.nx
-.tsbuildinfo
-.eslintcache
+build
+.strapi-updater.json
+.strapi
+# Strapi cloud
+.strapi-cloud.json
+
 
 ############################
-# Example app
+# TypeScript
 ############################
 
-.dev
-# *.cache
+*.tsbuildinfo
+
 
 ############################
-# Visual Studio Code
+# Build Tools Cache
 ############################
 
-.vscode/
+# Rollup cache
+.rollup.cache/
+**/.rollup.cache/
+.rpt2_cache/
+
+# Parcel cache
+.parcel-cache/
+
+# Webpack cache
+.webpack/
+
+# Turbopack cache
+.turbo/
+
+# Next.js cache
+.next/
+
+# Nuxt.js cache
+.nuxt/
+
+# Vite cache
+.vite/
+node_modules/.vite/
+
+
+############################
+# Testing Scripts (Generated)
+############################
+
+# Bash scripts
+test-audit-logs.sh
+build-and-run.sh
+quick-test.sh
+setup.sh
+check-git-status.sh
+verify-before-push.sh
+
+# PowerShell scripts
+*.ps1
+test-audit-logs.ps1
+build-and-run.ps1
+quick-test.ps1
+setup.ps1
+
+# Batch files
+*.bat
+build-and-setup.bat
+test.bat
+run.bat
+
+
+############################
+# Documentation (Optional - Remove if you want to commit them)
+############################
+
+# Uncomment if you don't want to commit test guides
+# HOW-TO-TEST.md
+# TESTING.md
+# COMPLETE-TEST-GUIDE.md
+
+
+############################
+# IDE and Editor
+############################
+
+# VSCode
+.vscode/*
 !.vscode/settings.json
-front-workspace.code-workspace
-.yarnrc
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# JetBrains IDEs
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+
 
 ############################
-# Package managers
+# Yarn
 ############################
 
-.pnp.*
 .yarn/*
 !.yarn/patches
 !.yarn/plugins
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
-yarn-error.log
-pnpm-debug.log
-npm-debug.log
+.pnp.*
+
 
 ############################
-# Playwright
+# Build outputs
 ############################
-playwright-report
-tests/e2e/playwright-storage-state.json
-test-results
-!tests/e2e/data/*.tar
-tests/e2e/.env
-!tests/cli/data/*.tar.gz
-tests/cli/.env
+
+dist/
+build/
+*.tgz
+
 
 ############################
-# AI tools
+# Temporary files
 ############################
-CLAUDE.local.md
+
+tmp/
+temp/
+*.tmp
+*.temp
+
 
 ############################
-# Strapi
+# Database files (development)
 ############################
-examples/**/types/generated
-.nx/cache
-.nx/workspace-data
 
-# Ignore yarn.lock inside templates
-templates/yarn.lock
+*.db
+*.db-shm
+*.db-wal
+.tmp/data.db
+
+
+############################
+# API Tokens and Secrets (IMPORTANT!)
+############################
+
+# Make sure no tokens are committed
+*token*.txt
+*secret*.txt
+*api-key*.txt
+
+
+############################
+# Plugin specific
+############################
+
+# Audit logs plugin build artifacts
+packages/plugins/audit-logs/dist/
+packages/plugins/audit-logs/.rollup.cache/
+packages/plugins/audit-logs/node_modules/
+
+# All plugin dist folders
+packages/plugins/*/dist/
+packages/plugins/*/.rollup.cache/
+packages/plugins/*/.rpt2_cache/
+
+
+############################
+# Strapi generated files
+############################
+
+.cache/
+public/uploads/
+.strapi-updater.json
+.strapi-cloud.json
+
+
+############################
+# Lock files (choose one)
+############################
+
+# Keep yarn.lock, ignore others
+package-lock.json
+pnpm-lock.yaml
+
+# Or if using npm, uncomment:
+# yarn.lock
+# pnpm-lock.yaml
+
+
+############################
+# Environment files
+############################
+
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+.env*.local
+
+
+############################
+# Mac specific
+############################
+
+.DS_Store
+.AppleDouble
+.LSOverride
+
+
+############################
+# Backup files
+############################
+
+*.bak
+*.backup
+*~
+
+
+############################
+# Custom test data
+############################
+
+test-data/
+sample-data/
+mock-data/

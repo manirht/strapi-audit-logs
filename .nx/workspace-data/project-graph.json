@@ -3980,24 +3980,15 @@
           "targetGroups": {
             "NPM Scripts": [
               "build",
-              "clean",
-              "lint",
-              "test:unit",
-              "test:unit:watch",
-              "watch"
+              "build:code",
+              "build:types",
+              "clean"
             ]
           },
           "description": "Automated audit logging for all content changes in Strapi",
           "js": {
             "packageName": "@strapi/plugin-audit-logs",
             "packageExports": {
-              "./strapi-admin": {
-                "types": "./dist/admin/src/index.d.ts",
-                "source": "./admin/src/index.ts",
-                "import": "./dist/admin/index.mjs",
-                "require": "./dist/admin/index.js",
-                "default": "./dist/admin/index.js"
-              },
               "./strapi-server": {
                 "types": "./dist/server/src/index.d.ts",
                 "source": "./server/src/index.ts",
@@ -4017,7 +4008,7 @@
               "script": "build"
             },
             "metadata": {
-              "scriptContent": "pack-up build",
+              "scriptContent": "npm run clean && npm run build:code && npm run build:types",
               "runCommand": "yarn build"
             },
             "configurations": {},
@@ -4034,6 +4025,49 @@
             ],
             "cache": true
           },
+          "build:code": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "build:code"
+            },
+            "metadata": {
+              "scriptContent": "rollup -c",
+              "runCommand": "yarn build:code"
+            },
+            "configurations": {},
+            "parallelism": true,
+            "inputs": [
+              "default",
+              "^production"
+            ],
+            "outputs": [
+              "{projectRoot}/dist"
+            ],
+            "cache": true
+          },
+          "build:types": {
+            "executor": "nx:run-script",
+            "options": {
+              "script": "build:types"
+            },
+            "metadata": {
+              "scriptContent": "tsc -p server/tsconfig.build.json --emitDeclarationOnly",
+              "runCommand": "yarn build:types"
+            },
+            "configurations": {},
+            "parallelism": true,
+            "inputs": [
+              "default",
+              "^production"
+            ],
+            "outputs": [
+              "{projectRoot}/dist"
+            ],
+            "dependsOn": [
+              "^build:types"
+            ],
+            "cache": true
+          },
           "clean": {
             "executor": "nx:run-script",
             "options": {
@@ -4042,68 +4076,6 @@
             "metadata": {
               "scriptContent": "rimraf ./dist",
               "runCommand": "yarn clean"
-            },
-            "configurations": {},
-            "parallelism": true
-          },
-          "lint": {
-            "executor": "nx:run-script",
-            "options": {
-              "script": "lint"
-            },
-            "metadata": {
-              "scriptContent": "eslint .",
-              "runCommand": "yarn lint"
-            },
-            "configurations": {},
-            "parallelism": true,
-            "inputs": [
-              "{projectRoot}/**/*.js",
-              "{projectRoot}/**/*.ts",
-              "{projectRoot}/.eslintrc.js",
-              "{projectRoot}/.eslintignore",
-              "{projectRoot}/tsconfig.eslint.json",
-              "{workspaceRoot}/packages/utils/eslint-config-custom/**/*"
-            ],
-            "cache": true
-          },
-          "test:unit": {
-            "executor": "nx:run-script",
-            "options": {
-              "script": "test:unit"
-            },
-            "metadata": {
-              "scriptContent": "jest",
-              "runCommand": "yarn test:unit"
-            },
-            "configurations": {},
-            "parallelism": true,
-            "inputs": [
-              "default",
-              "{workspaceRoot}/jest-preset.unit.js"
-            ],
-            "cache": true
-          },
-          "test:unit:watch": {
-            "executor": "nx:run-script",
-            "options": {
-              "script": "test:unit:watch"
-            },
-            "metadata": {
-              "scriptContent": "jest --watch",
-              "runCommand": "yarn test:unit:watch"
-            },
-            "configurations": {},
-            "parallelism": true
-          },
-          "watch": {
-            "executor": "nx:run-script",
-            "options": {
-              "script": "watch"
-            },
-            "metadata": {
-              "scriptContent": "pack-up watch",
-              "runCommand": "yarn watch"
             },
             "configurations": {},
             "parallelism": true
@@ -11357,9 +11329,9 @@
         "hash": "17278881010072061599"
       }
     },
-    "npm:@esbuild/linux-x64@0.25.0": {
+    "npm:@esbuild/linux-x64": {
       "type": "npm",
-      "name": "npm:@esbuild/linux-x64@0.25.0",
+      "name": "npm:@esbuild/linux-x64",
       "data": {
         "version": "0.25.0",
         "packageName": "@esbuild/linux-x64",
@@ -11537,9 +11509,9 @@
         "hash": "3118634303446997421"
       }
     },
-    "npm:@esbuild/win32-x64": {
+    "npm:@esbuild/win32-x64@0.25.0": {
       "type": "npm",
-      "name": "npm:@esbuild/win32-x64",
+      "name": "npm:@esbuild/win32-x64@0.25.0",
       "data": {
         "version": "0.25.0",
         "packageName": "@esbuild/win32-x64",
@@ -11879,9 +11851,9 @@
         "hash": "14111005903371643343"
       }
     },
-    "npm:@img/sharp-libvips-linux-x64@1.0.4": {
+    "npm:@img/sharp-libvips-linux-x64": {
       "type": "npm",
-      "name": "npm:@img/sharp-libvips-linux-x64@1.0.4",
+      "name": "npm:@img/sharp-libvips-linux-x64",
       "data": {
         "version": "1.0.4",
         "packageName": "@img/sharp-libvips-linux-x64",
@@ -11933,9 +11905,9 @@
         "hash": "13017887543167419797"
       }
     },
-    "npm:@img/sharp-linux-x64@0.33.5": {
+    "npm:@img/sharp-linux-x64": {
       "type": "npm",
-      "name": "npm:@img/sharp-linux-x64@0.33.5",
+      "name": "npm:@img/sharp-linux-x64",
       "data": {
         "version": "0.33.5",
         "packageName": "@img/sharp-linux-x64",
@@ -11978,9 +11950,9 @@
         "hash": "17503160122875990420"
       }
     },
-    "npm:@img/sharp-win32-x64": {
+    "npm:@img/sharp-win32-x64@0.33.5": {
       "type": "npm",
-      "name": "npm:@img/sharp-win32-x64",
+      "name": "npm:@img/sharp-win32-x64@0.33.5",
       "data": {
         "version": "0.33.5",
         "packageName": "@img/sharp-win32-x64",
@@ -12788,9 +12760,9 @@
         "hash": "7201210244686320059"
       }
     },
-    "npm:@nx/nx-linux-x64-gnu@20.4.6": {
+    "npm:@nx/nx-linux-x64-gnu": {
       "type": "npm",
-      "name": "npm:@nx/nx-linux-x64-gnu@20.4.6",
+      "name": "npm:@nx/nx-linux-x64-gnu",
       "data": {
         "version": "20.4.6",
         "packageName": "@nx/nx-linux-x64-gnu",
@@ -12815,9 +12787,9 @@
         "hash": "15662702170581785544"
       }
     },
-    "npm:@nx/nx-win32-x64-msvc": {
+    "npm:@nx/nx-win32-x64-msvc@20.4.6": {
       "type": "npm",
-      "name": "npm:@nx/nx-win32-x64-msvc",
+      "name": "npm:@nx/nx-win32-x64-msvc@20.4.6",
       "data": {
         "version": "20.4.6",
         "packageName": "@nx/nx-win32-x64-msvc",
@@ -13733,6 +13705,15 @@
         "hash": "10c0/15d73306f539763a4b0d5723a0be9099b56d07118ff12b4c7f4c04b26e762076706e9f88a45f131d639ed9b7bd52e51facf93f2ca265b994172677b48ca705fe"
       }
     },
+    "npm:@rollup/plugin-commonjs@25.0.8": {
+      "type": "npm",
+      "name": "npm:@rollup/plugin-commonjs@25.0.8",
+      "data": {
+        "version": "25.0.8",
+        "packageName": "@rollup/plugin-commonjs",
+        "hash": "10c0/00d6fe41c33476dcb4b4ac3068f869b8537153646ea18f1fb9d0dfd5592792148567dd735d58ac15e2fdd4ed6c98453d20fe5343105f8cfa93d291198c9a90f5"
+      }
+    },
     "npm:@rollup/plugin-dynamic-import-vars": {
       "type": "npm",
       "name": "npm:@rollup/plugin-dynamic-import-vars",
@@ -13769,6 +13750,15 @@
         "hash": "10c0/5f3b11f9f6d00fe9fd3fe1977cc71f6a99c2b13d0ee82ad6822c4c4ecfc98854791c5a505798762f7e2332d9d67568a561e89aa8268ed3b1668563be1845109e"
       }
     },
+    "npm:@rollup/plugin-node-resolve@15.3.1": {
+      "type": "npm",
+      "name": "npm:@rollup/plugin-node-resolve@15.3.1",
+      "data": {
+        "version": "15.3.1",
+        "packageName": "@rollup/plugin-node-resolve",
+        "hash": "10c0/ecf3abe890fc98ad665fdbfb1ea245253e0d1f2bc6d9f4e8f496f212c76a2ce7cd4b9bc0abd21e6bcaa16f72d1c67cc6b322ea12a6ec68e8a8834df8242a5ecd"
+      }
+    },
     "npm:@rollup/plugin-swc": {
       "type": "npm",
       "name": "npm:@rollup/plugin-swc",
@@ -13776,6 +13766,15 @@
         "version": "0.4.0",
         "packageName": "@rollup/plugin-swc",
         "hash": "10c0/65bd1ecb54f69324d5d80bada3afd5b1e2c881b013be8216f0ed1086f514d3cc5bcacd585f600bd1dfacefdba5112334ac9c6956fe307abe036c7d35a293bf00"
+      }
+    },
+    "npm:@rollup/plugin-typescript@11.1.6": {
+      "type": "npm",
+      "name": "npm:@rollup/plugin-typescript@11.1.6",
+      "data": {
+        "version": "11.1.6",
+        "packageName": "@rollup/plugin-typescript",
+        "hash": "10c0/5347cd73ac28d4cf2401a3e689864a1a0df8f3ae029abd9c38525cbc84bcfa16c3a32a0ac5698dac65ec531ba7cf8332e14f5fc7f8fa501193da23320a134c5c"
       }
     },
     "npm:@rollup/pluginutils": {
@@ -13805,6 +13804,15 @@
         "hash": "5811914475195112777"
       }
     },
+    "npm:@rollup/rollup-android-arm-eabi@4.52.5": {
+      "type": "npm",
+      "name": "npm:@rollup/rollup-android-arm-eabi@4.52.5",
+      "data": {
+        "version": "4.52.5",
+        "packageName": "@rollup/rollup-android-arm-eabi",
+        "hash": "7025458833189143553"
+      }
+    },
     "npm:@rollup/rollup-android-arm64@4.19.1": {
       "type": "npm",
       "name": "npm:@rollup/rollup-android-arm64@4.19.1",
@@ -13821,6 +13829,15 @@
         "version": "4.27.4",
         "packageName": "@rollup/rollup-android-arm64",
         "hash": "1182207110579221023"
+      }
+    },
+    "npm:@rollup/rollup-android-arm64@4.52.5": {
+      "type": "npm",
+      "name": "npm:@rollup/rollup-android-arm64@4.52.5",
+      "data": {
+        "version": "4.52.5",
+        "packageName": "@rollup/rollup-android-arm64",
+        "hash": "2656473597466030243"
       }
     },
     "npm:@rollup/rollup-darwin-arm64@4.19.1": {
@@ -13841,6 +13858,15 @@
         "hash": "16848610456199636167"
       }
     },
+    "npm:@rollup/rollup-darwin-arm64@4.52.5": {
+      "type": "npm",
+      "name": "npm:@rollup/rollup-darwin-arm64@4.52.5",
+      "data": {
+        "version": "4.52.5",
+        "packageName": "@rollup/rollup-darwin-arm64",
+        "hash": "6890316990216986207"
+      }
+    },
     "npm:@rollup/rollup-darwin-x64@4.19.1": {
       "type": "npm",
       "name": "npm:@rollup/rollup-darwin-x64@4.19.1",
@@ -13859,6 +13885,15 @@
         "hash": "4484469331356776450"
       }
     },
+    "npm:@rollup/rollup-darwin-x64@4.52.5": {
+      "type": "npm",
+      "name": "npm:@rollup/rollup-darwin-x64@4.52.5",
+      "data": {
+        "version": "4.52.5",
+        "packageName": "@rollup/rollup-darwin-x64",
+        "hash": "15326813138846683792"
+      }
+    },
     "npm:@rollup/rollup-freebsd-arm64@4.27.4": {
       "type": "npm",
       "name": "npm:@rollup/rollup-freebsd-arm64@4.27.4",
@@ -13868,6 +13903,15 @@
         "hash": "6421439599356225430"
       }
     },
+    "npm:@rollup/rollup-freebsd-arm64@4.52.5": {
+      "type": "npm",
+      "name": "npm:@rollup/rollup-freebsd-arm64@4.52.5",
+      "data": {
+        "version": "4.52.5",
+        "packageName": "@rollup/rollup-freebsd-arm64",
+        "hash": "1238105826068815645"
+      }
+    },
     "npm:@rollup/rollup-freebsd-x64@4.27.4": {
       "type": "npm",
       "name": "npm:@rollup/rollup-freebsd-x64@4.27.4",
@@ -13875,6 +13919,15 @@
         "version": "4.27.4",
         "packageName": "@rollup/rollup-freebsd-x64",
         "hash": "829793725235640006"
+      }
+    },
+    "npm:@rollup/rollup-freebsd-x64@4.52.5": {
+      "type": "npm",
+      "name": "npm:@rollup/rollup-freebsd-x64@4.52.5",
+      "data": {
+        "version": "4.52.5",
+        "packageName": "@rollup/rollup-freebsd-x64",
+        "hash": "4870228475424339824"
       }
     },
     "npm:@rollup/rollup-linux-arm-gnueabihf@4.19.1": {
@@ -13895,6 +13948,15 @@
         "hash": "1161216063114776625"
       }
     },
+    "npm:@rollup/rollup-linux-arm-gnueabihf@4.52.5": {
+      "type": "npm",
+      "name": "npm:@rollup/rollup-linux-arm-gnueabihf@4.52.5",
+      "data": {
+        "version": "4.52.5",
+        "packageName": "@rollup/rollup-linux-arm-gnueabihf",
+        "hash": "16562036219008686780"
+      }
+    },
     "npm:@rollup/rollup-linux-arm-musleabihf@4.19.1": {
       "type": "npm",
       "name": "npm:@rollup/rollup-linux-arm-musleabihf@4.19.1",
@@ -13911,6 +13973,15 @@
         "version": "4.27.4",
         "packageName": "@rollup/rollup-linux-arm-musleabihf",
         "hash": "12648641952473985549"
+      }
+    },
+    "npm:@rollup/rollup-linux-arm-musleabihf@4.52.5": {
+      "type": "npm",
+      "name": "npm:@rollup/rollup-linux-arm-musleabihf@4.52.5",
+      "data": {
+        "version": "4.52.5",
+        "packageName": "@rollup/rollup-linux-arm-musleabihf",
+        "hash": "17360714365207262429"
       }
     },
     "npm:@rollup/rollup-linux-arm64-gnu@4.19.1": {
@@ -13931,6 +14002,15 @@
         "hash": "16783321365259252693"
       }
     },
+    "npm:@rollup/rollup-linux-arm64-gnu@4.52.5": {
+      "type": "npm",
+      "name": "npm:@rollup/rollup-linux-arm64-gnu@4.52.5",
+      "data": {
+        "version": "4.52.5",
+        "packageName": "@rollup/rollup-linux-arm64-gnu",
+        "hash": "3699343931975717956"
+      }
+    },
     "npm:@rollup/rollup-linux-arm64-musl@4.19.1": {
       "type": "npm",
       "name": "npm:@rollup/rollup-linux-arm64-musl@4.19.1",
@@ -13947,6 +14027,24 @@
         "version": "4.27.4",
         "packageName": "@rollup/rollup-linux-arm64-musl",
         "hash": "14245553208983503674"
+      }
+    },
+    "npm:@rollup/rollup-linux-arm64-musl@4.52.5": {
+      "type": "npm",
+      "name": "npm:@rollup/rollup-linux-arm64-musl@4.52.5",
+      "data": {
+        "version": "4.52.5",
+        "packageName": "@rollup/rollup-linux-arm64-musl",
+        "hash": "17803012430878449373"
+      }
+    },
+    "npm:@rollup/rollup-linux-loong64-gnu@4.52.5": {
+      "type": "npm",
+      "name": "npm:@rollup/rollup-linux-loong64-gnu@4.52.5",
+      "data": {
+        "version": "4.52.5",
+        "packageName": "@rollup/rollup-linux-loong64-gnu",
+        "hash": "11172230187464853322"
       }
     },
     "npm:@rollup/rollup-linux-powerpc64le-gnu@4.19.1": {
@@ -13967,6 +14065,15 @@
         "hash": "8724152648168133457"
       }
     },
+    "npm:@rollup/rollup-linux-ppc64-gnu@4.52.5": {
+      "type": "npm",
+      "name": "npm:@rollup/rollup-linux-ppc64-gnu@4.52.5",
+      "data": {
+        "version": "4.52.5",
+        "packageName": "@rollup/rollup-linux-ppc64-gnu",
+        "hash": "11071538773679955254"
+      }
+    },
     "npm:@rollup/rollup-linux-riscv64-gnu@4.19.1": {
       "type": "npm",
       "name": "npm:@rollup/rollup-linux-riscv64-gnu@4.19.1",
@@ -13983,6 +14090,24 @@
         "version": "4.27.4",
         "packageName": "@rollup/rollup-linux-riscv64-gnu",
         "hash": "5175274037296730123"
+      }
+    },
+    "npm:@rollup/rollup-linux-riscv64-gnu@4.52.5": {
+      "type": "npm",
+      "name": "npm:@rollup/rollup-linux-riscv64-gnu@4.52.5",
+      "data": {
+        "version": "4.52.5",
+        "packageName": "@rollup/rollup-linux-riscv64-gnu",
+        "hash": "17446115869743276185"
+      }
+    },
+    "npm:@rollup/rollup-linux-riscv64-musl@4.52.5": {
+      "type": "npm",
+      "name": "npm:@rollup/rollup-linux-riscv64-musl@4.52.5",
+      "data": {
+        "version": "4.52.5",
+        "packageName": "@rollup/rollup-linux-riscv64-musl",
+        "hash": "1720303997346204840"
       }
     },
     "npm:@rollup/rollup-linux-s390x-gnu@4.19.1": {
@@ -14003,6 +14128,15 @@
         "hash": "8100504150405219184"
       }
     },
+    "npm:@rollup/rollup-linux-s390x-gnu@4.52.5": {
+      "type": "npm",
+      "name": "npm:@rollup/rollup-linux-s390x-gnu@4.52.5",
+      "data": {
+        "version": "4.52.5",
+        "packageName": "@rollup/rollup-linux-s390x-gnu",
+        "hash": "10638304662601601874"
+      }
+    },
     "npm:@rollup/rollup-linux-x64-gnu@4.19.1": {
       "type": "npm",
       "name": "npm:@rollup/rollup-linux-x64-gnu@4.19.1",
@@ -14012,13 +14146,22 @@
         "hash": "12169036404887146725"
       }
     },
-    "npm:@rollup/rollup-linux-x64-gnu@4.27.4": {
+    "npm:@rollup/rollup-linux-x64-gnu": {
       "type": "npm",
-      "name": "npm:@rollup/rollup-linux-x64-gnu@4.27.4",
+      "name": "npm:@rollup/rollup-linux-x64-gnu",
       "data": {
         "version": "4.27.4",
         "packageName": "@rollup/rollup-linux-x64-gnu",
         "hash": "18084948181464424487"
+      }
+    },
+    "npm:@rollup/rollup-linux-x64-gnu@4.52.5": {
+      "type": "npm",
+      "name": "npm:@rollup/rollup-linux-x64-gnu@4.52.5",
+      "data": {
+        "version": "4.52.5",
+        "packageName": "@rollup/rollup-linux-x64-gnu",
+        "hash": "2916965019064594047"
       }
     },
     "npm:@rollup/rollup-linux-x64-musl@4.19.1": {
@@ -14039,6 +14182,24 @@
         "hash": "14024756832902504174"
       }
     },
+    "npm:@rollup/rollup-linux-x64-musl@4.52.5": {
+      "type": "npm",
+      "name": "npm:@rollup/rollup-linux-x64-musl@4.52.5",
+      "data": {
+        "version": "4.52.5",
+        "packageName": "@rollup/rollup-linux-x64-musl",
+        "hash": "11910679086862554890"
+      }
+    },
+    "npm:@rollup/rollup-openharmony-arm64@4.52.5": {
+      "type": "npm",
+      "name": "npm:@rollup/rollup-openharmony-arm64@4.52.5",
+      "data": {
+        "version": "4.52.5",
+        "packageName": "@rollup/rollup-openharmony-arm64",
+        "hash": "16399873540793322397"
+      }
+    },
     "npm:@rollup/rollup-win32-arm64-msvc@4.19.1": {
       "type": "npm",
       "name": "npm:@rollup/rollup-win32-arm64-msvc@4.19.1",
@@ -14055,6 +14216,15 @@
         "version": "4.27.4",
         "packageName": "@rollup/rollup-win32-arm64-msvc",
         "hash": "8443834095168104910"
+      }
+    },
+    "npm:@rollup/rollup-win32-arm64-msvc@4.52.5": {
+      "type": "npm",
+      "name": "npm:@rollup/rollup-win32-arm64-msvc@4.52.5",
+      "data": {
+        "version": "4.52.5",
+        "packageName": "@rollup/rollup-win32-arm64-msvc",
+        "hash": "6822030227397127866"
       }
     },
     "npm:@rollup/rollup-win32-ia32-msvc@4.19.1": {
@@ -14075,6 +14245,24 @@
         "hash": "5160825340633153477"
       }
     },
+    "npm:@rollup/rollup-win32-ia32-msvc@4.52.5": {
+      "type": "npm",
+      "name": "npm:@rollup/rollup-win32-ia32-msvc@4.52.5",
+      "data": {
+        "version": "4.52.5",
+        "packageName": "@rollup/rollup-win32-ia32-msvc",
+        "hash": "11144204180026198332"
+      }
+    },
+    "npm:@rollup/rollup-win32-x64-gnu@4.52.5": {
+      "type": "npm",
+      "name": "npm:@rollup/rollup-win32-x64-gnu@4.52.5",
+      "data": {
+        "version": "4.52.5",
+        "packageName": "@rollup/rollup-win32-x64-gnu",
+        "hash": "9631954508720007854"
+      }
+    },
     "npm:@rollup/rollup-win32-x64-msvc@4.19.1": {
       "type": "npm",
       "name": "npm:@rollup/rollup-win32-x64-msvc@4.19.1",
@@ -14084,13 +14272,22 @@
         "hash": "14640182602764469337"
       }
     },
-    "npm:@rollup/rollup-win32-x64-msvc": {
+    "npm:@rollup/rollup-win32-x64-msvc@4.27.4": {
       "type": "npm",
-      "name": "npm:@rollup/rollup-win32-x64-msvc",
+      "name": "npm:@rollup/rollup-win32-x64-msvc@4.27.4",
       "data": {
         "version": "4.27.4",
         "packageName": "@rollup/rollup-win32-x64-msvc",
         "hash": "15673748974055912184"
+      }
+    },
+    "npm:@rollup/rollup-win32-x64-msvc@4.52.5": {
+      "type": "npm",
+      "name": "npm:@rollup/rollup-win32-x64-msvc@4.52.5",
+      "data": {
+        "version": "4.52.5",
+        "packageName": "@rollup/rollup-win32-x64-msvc",
+        "hash": "14144552113676478685"
       }
     },
     "npm:@rushstack/node-core-library": {
@@ -15227,9 +15424,9 @@
         "hash": "16046995716587888988"
       }
     },
-    "npm:@swc/core-linux-x64-gnu@1.4.8": {
+    "npm:@swc/core-linux-x64-gnu": {
       "type": "npm",
-      "name": "npm:@swc/core-linux-x64-gnu@1.4.8",
+      "name": "npm:@swc/core-linux-x64-gnu",
       "data": {
         "version": "1.4.8",
         "packageName": "@swc/core-linux-x64-gnu",
@@ -15299,9 +15496,9 @@
         "hash": "3584081915472716377"
       }
     },
-    "npm:@swc/core-win32-x64-msvc": {
+    "npm:@swc/core-win32-x64-msvc@1.4.8": {
       "type": "npm",
-      "name": "npm:@swc/core-win32-x64-msvc",
+      "name": "npm:@swc/core-win32-x64-msvc@1.4.8",
       "data": {
         "version": "1.4.8",
         "packageName": "@swc/core-win32-x64-msvc",
@@ -15794,6 +15991,15 @@
         "hash": "10c0/b3b0e334288ddb407c7b3357ca67dbee75ee22db242ca7c56fe27db4e1a31989cb8af48a84dd401deb787fe10cc6b2ab1ee82dc4783be87ededbe3d53c79c70d"
       }
     },
+    "npm:@types/estree@1.0.8": {
+      "type": "npm",
+      "name": "npm:@types/estree@1.0.8",
+      "data": {
+        "version": "1.0.8",
+        "packageName": "@types/estree",
+        "hash": "10c0/39d34d1afaa338ab9763f37ad6066e3f349444f9052b9676a7cc0252ef9485a41c6d81c9c4e0d26e9077993354edf25efc853f3224dd4b447175ef62bdcc86a5"
+      }
+    },
     "npm:@types/eventsource": {
       "type": "npm",
       "name": "npm:@types/eventsource",
@@ -16251,6 +16457,15 @@
         "version": "4.14.197",
         "packageName": "@types/lodash",
         "hash": "10c0/fd66d680293b24f9ecd44c0963e5f75b04d05d95bb31d51ad0ae84abae8e14f6b98f2721199b293a8596102acff49db43816e6a6baca4085165a4fe80f49124e"
+      }
+    },
+    "npm:@types/lodash@4.17.20": {
+      "type": "npm",
+      "name": "npm:@types/lodash@4.17.20",
+      "data": {
+        "version": "4.17.20",
+        "packageName": "@types/lodash",
+        "hash": "10c0/98cdd0faae22cbb8079a01a3bb65aa8f8c41143367486c1cbf5adc83f16c9272a2a5d2c1f541f61d0d73da543c16ee1d21cf2ef86cb93cd0cc0ac3bced6dd88f"
       }
     },
     "npm:@types/long": {
@@ -19002,9 +19217,9 @@
       "type": "npm",
       "name": "npm:caniuse-lite",
       "data": {
-        "version": "1.0.30001683",
+        "version": "1.0.30001810",
         "packageName": "caniuse-lite",
-        "hash": "10c0/0ca7f4f2fbd0c71fde5a14ca2e29bb1dcb84c095d7a3d88e47371e062f276f1dc31da3f10931ec134ef7fb096259c0d67c9ffb843a9ec4a040a85eb2fea0bdec"
+        "hash": "10c0/d29bc73f33c888025d54c7ff2984372d3b350b15a6a9e174884fb40976175e9177f202e2a72c2d428dddfc032784bc8ba635a31d168fcab9fac65756d7b3d6b4"
       }
     },
     "npm:capital-case": {
@@ -28286,9 +28501,9 @@
         "hash": "10c0/9e09d8db65bf112c4a91491cbffc1d3568d4785a04bb2d1c2522f97f683d6e4073d137005ddb41213609f05a1b2eb2f27e446dfd4b6d91bf12b707c483fbd36e"
       }
     },
-    "npm:nice-napi@1.0.2": {
+    "npm:nice-napi": {
       "type": "npm",
-      "name": "npm:nice-napi@1.0.2",
+      "name": "npm:nice-napi",
       "data": {
         "version": "1.0.2",
         "packageName": "nice-napi",
@@ -28340,9 +28555,9 @@
         "hash": "10c0/f7ad0e7a8e33809d4f3a0d1d65036a711c39e9d23e0319d80ebe076b9a3b4432b4d6b86a7fab65521de3f6872ffed36fc35d1327487c48eb88c517803403eda3"
       }
     },
-    "npm:node-addon-api@3.2.1": {
+    "npm:node-addon-api": {
       "type": "npm",
-      "name": "npm:node-addon-api@3.2.1",
+      "name": "npm:node-addon-api",
       "data": {
         "version": "3.2.1",
         "packageName": "node-addon-api",
@@ -28367,9 +28582,9 @@
         "hash": "10c0/7a4a0e027e509b741bec4172749103f158da23187ff251cb988dd54ea7267519c3fa11838971da0f5f3c54e79da3174e7bd72aa2179c9f69887511ece16c9c0f"
       }
     },
-    "npm:node-gyp-build@4.8.0": {
+    "npm:node-gyp-build": {
       "type": "npm",
-      "name": "npm:node-gyp-build@4.8.0",
+      "name": "npm:node-gyp-build",
       "data": {
         "version": "4.8.0",
         "packageName": "node-gyp-build",
@@ -31589,6 +31804,15 @@
         "hash": "10c0/1442650cfea5e4617ce14743784f6f578817e31db56f9c8aaf96a82daa9bc20b6ccd66c0d677dbf302a4da3e70664dc3bef11a1aec85e6aff3cecccb945b1d35"
       }
     },
+    "npm:rollup@4.52.5": {
+      "type": "npm",
+      "name": "npm:rollup@4.52.5",
+      "data": {
+        "version": "4.52.5",
+        "packageName": "rollup",
+        "hash": "10c0/faf1697b305d13a149bb64a2bb7378344becc7c8580f56225c4c00adbf493d82480a44b3e3b1cc82a3ac5d1d4cab6dfc89e6635443895a2dc488969075f5b94d"
+      }
+    },
     "npm:run-async@2.4.1": {
       "type": "npm",
       "name": "npm:run-async@2.4.1",
@@ -34080,6 +34304,15 @@
         "version": "5.8.3",
         "packageName": "typescript",
         "hash": "10c0/5f8bb01196e542e64d44db3d16ee0e4063ce4f3e3966df6005f2588e86d91c03e1fb131c2581baf0fb65ee79669eea6e161cd448178986587e9f6844446dbb48"
+      }
+    },
+    "npm:typescript@5.9.3": {
+      "type": "npm",
+      "name": "npm:typescript@5.9.3",
+      "data": {
+        "version": "5.9.3",
+        "packageName": "typescript",
+        "hash": "10c0/6bd7552ce39f97e711db5aa048f6f9995b53f1c52f7d8667c1abdc1700c68a76a308f579cd309ce6b53646deb4e9a1be7c813a93baaf0a28ccd536a30270e1c5"
       }
     },
     "npm:uc.micro": {
@@ -37217,7 +37450,17 @@
       },
       {
         "source": "@strapi/plugin-audit-logs",
-        "target": "npm:@strapi/pack-up",
+        "target": "npm:@rollup/plugin-commonjs@25.0.8",
+        "type": "static"
+      },
+      {
+        "source": "@strapi/plugin-audit-logs",
+        "target": "npm:@rollup/plugin-node-resolve@15.3.1",
+        "type": "static"
+      },
+      {
+        "source": "@strapi/plugin-audit-logs",
+        "target": "npm:@rollup/plugin-typescript@11.1.6",
         "type": "static"
       },
       {
@@ -37227,22 +37470,27 @@
       },
       {
         "source": "@strapi/plugin-audit-logs",
-        "target": "npm:@types/lodash",
+        "target": "npm:@types/lodash@4.17.20",
         "type": "static"
       },
       {
         "source": "@strapi/plugin-audit-logs",
-        "target": "npm:eslint",
+        "target": "npm:rimraf@5.0.10",
         "type": "static"
       },
       {
         "source": "@strapi/plugin-audit-logs",
-        "target": "npm:rimraf",
+        "target": "npm:rollup@4.52.5",
         "type": "static"
       },
       {
         "source": "@strapi/plugin-audit-logs",
-        "target": "npm:typescript",
+        "target": "npm:tslib",
+        "type": "static"
+      },
+      {
+        "source": "@strapi/plugin-audit-logs",
+        "target": "npm:typescript@5.9.3",
         "type": "static"
       },
       {
@@ -45767,10 +46015,10 @@
         "type": "static"
       }
     ],
-    "npm:@img/sharp-linux-x64@0.33.5": [
+    "npm:@img/sharp-linux-x64": [
       {
-        "source": "npm:@img/sharp-linux-x64@0.33.5",
-        "target": "npm:@img/sharp-libvips-linux-x64@1.0.4",
+        "source": "npm:@img/sharp-linux-x64",
+        "target": "npm:@img/sharp-libvips-linux-x64",
         "type": "static"
       }
     ],
@@ -49508,6 +49756,38 @@
         "type": "static"
       }
     ],
+    "npm:@rollup/plugin-commonjs@25.0.8": [
+      {
+        "source": "npm:@rollup/plugin-commonjs@25.0.8",
+        "target": "npm:@rollup/pluginutils",
+        "type": "static"
+      },
+      {
+        "source": "npm:@rollup/plugin-commonjs@25.0.8",
+        "target": "npm:commondir",
+        "type": "static"
+      },
+      {
+        "source": "npm:@rollup/plugin-commonjs@25.0.8",
+        "target": "npm:estree-walker",
+        "type": "static"
+      },
+      {
+        "source": "npm:@rollup/plugin-commonjs@25.0.8",
+        "target": "npm:glob@8.1.0",
+        "type": "static"
+      },
+      {
+        "source": "npm:@rollup/plugin-commonjs@25.0.8",
+        "target": "npm:is-reference",
+        "type": "static"
+      },
+      {
+        "source": "npm:@rollup/plugin-commonjs@25.0.8",
+        "target": "npm:magic-string",
+        "type": "static"
+      }
+    ],
     "npm:@rollup/plugin-dynamic-import-vars": [
       {
         "source": "npm:@rollup/plugin-dynamic-import-vars",
@@ -49581,6 +49861,33 @@
         "type": "static"
       }
     ],
+    "npm:@rollup/plugin-node-resolve@15.3.1": [
+      {
+        "source": "npm:@rollup/plugin-node-resolve@15.3.1",
+        "target": "npm:@rollup/pluginutils",
+        "type": "static"
+      },
+      {
+        "source": "npm:@rollup/plugin-node-resolve@15.3.1",
+        "target": "npm:@types/resolve",
+        "type": "static"
+      },
+      {
+        "source": "npm:@rollup/plugin-node-resolve@15.3.1",
+        "target": "npm:deepmerge",
+        "type": "static"
+      },
+      {
+        "source": "npm:@rollup/plugin-node-resolve@15.3.1",
+        "target": "npm:is-module",
+        "type": "static"
+      },
+      {
+        "source": "npm:@rollup/plugin-node-resolve@15.3.1",
+        "target": "npm:resolve",
+        "type": "static"
+      }
+    ],
     "npm:@rollup/plugin-swc": [
       {
         "source": "npm:@rollup/plugin-swc",
@@ -49590,6 +49897,18 @@
       {
         "source": "npm:@rollup/plugin-swc",
         "target": "npm:smob",
+        "type": "static"
+      }
+    ],
+    "npm:@rollup/plugin-typescript@11.1.6": [
+      {
+        "source": "npm:@rollup/plugin-typescript@11.1.6",
+        "target": "npm:@rollup/pluginutils",
+        "type": "static"
+      },
+      {
+        "source": "npm:@rollup/plugin-typescript@11.1.6",
+        "target": "npm:resolve",
         "type": "static"
       }
     ],
@@ -51894,7 +52213,7 @@
       },
       {
         "source": "npm:@swc/core",
-        "target": "npm:@swc/core-linux-x64-gnu@1.4.8",
+        "target": "npm:@swc/core-linux-x64-gnu",
         "type": "static"
       },
       {
@@ -51914,7 +52233,7 @@
       },
       {
         "source": "npm:@swc/core",
-        "target": "npm:@swc/core-win32-x64-msvc",
+        "target": "npm:@swc/core-win32-x64-msvc@1.4.8",
         "type": "static"
       },
       {
@@ -58591,7 +58910,7 @@
       },
       {
         "source": "npm:esbuild@0.25.0",
-        "target": "npm:@esbuild/linux-x64@0.25.0",
+        "target": "npm:@esbuild/linux-x64",
         "type": "static"
       },
       {
@@ -58631,7 +58950,7 @@
       },
       {
         "source": "npm:esbuild@0.25.0",
-        "target": "npm:@esbuild/win32-x64",
+        "target": "npm:@esbuild/win32-x64@0.25.0",
         "type": "static"
       }
     ],
@@ -67727,20 +68046,20 @@
         "type": "static"
       }
     ],
-    "npm:nice-napi@1.0.2": [
+    "npm:nice-napi": [
       {
-        "source": "npm:nice-napi@1.0.2",
-        "target": "npm:node-addon-api@3.2.1",
+        "source": "npm:nice-napi",
+        "target": "npm:node-addon-api",
         "type": "static"
       },
       {
-        "source": "npm:nice-napi@1.0.2",
+        "source": "npm:nice-napi",
         "target": "npm:node-gyp",
         "type": "static"
       },
       {
-        "source": "npm:nice-napi@1.0.2",
-        "target": "npm:node-gyp-build@4.8.0",
+        "source": "npm:nice-napi",
+        "target": "npm:node-gyp-build",
         "type": "static"
       }
     ],
@@ -67770,9 +68089,9 @@
         "type": "static"
       }
     ],
-    "npm:node-addon-api@3.2.1": [
+    "npm:node-addon-api": [
       {
-        "source": "npm:node-addon-api@3.2.1",
+        "source": "npm:node-addon-api",
         "target": "npm:node-gyp",
         "type": "static"
       }
@@ -68579,7 +68898,7 @@
       },
       {
         "source": "npm:nx",
-        "target": "npm:@nx/nx-linux-x64-gnu@20.4.6",
+        "target": "npm:@nx/nx-linux-x64-gnu",
         "type": "static"
       },
       {
@@ -68594,7 +68913,7 @@
       },
       {
         "source": "npm:nx",
-        "target": "npm:@nx/nx-win32-x64-msvc",
+        "target": "npm:@nx/nx-win32-x64-msvc@20.4.6",
         "type": "static"
       },
       {
@@ -69756,7 +70075,7 @@
     "npm:piscina": [
       {
         "source": "npm:piscina",
-        "target": "npm:nice-napi@1.0.2",
+        "target": "npm:nice-napi",
         "type": "static"
       }
     ],
@@ -71712,7 +72031,7 @@
       },
       {
         "source": "npm:rollup",
-        "target": "npm:@rollup/rollup-linux-x64-gnu@4.27.4",
+        "target": "npm:@rollup/rollup-linux-x64-gnu",
         "type": "static"
       },
       {
@@ -71732,7 +72051,7 @@
       },
       {
         "source": "npm:rollup",
-        "target": "npm:@rollup/rollup-win32-x64-msvc",
+        "target": "npm:@rollup/rollup-win32-x64-msvc@4.27.4",
         "type": "static"
       },
       {
@@ -71742,6 +72061,128 @@
       },
       {
         "source": "npm:rollup",
+        "target": "npm:fsevents@2.3.3",
+        "type": "static"
+      }
+    ],
+    "npm:rollup@4.52.5": [
+      {
+        "source": "npm:rollup@4.52.5",
+        "target": "npm:@rollup/rollup-android-arm-eabi@4.52.5",
+        "type": "static"
+      },
+      {
+        "source": "npm:rollup@4.52.5",
+        "target": "npm:@rollup/rollup-android-arm64@4.52.5",
+        "type": "static"
+      },
+      {
+        "source": "npm:rollup@4.52.5",
+        "target": "npm:@rollup/rollup-darwin-arm64@4.52.5",
+        "type": "static"
+      },
+      {
+        "source": "npm:rollup@4.52.5",
+        "target": "npm:@rollup/rollup-darwin-x64@4.52.5",
+        "type": "static"
+      },
+      {
+        "source": "npm:rollup@4.52.5",
+        "target": "npm:@rollup/rollup-freebsd-arm64@4.52.5",
+        "type": "static"
+      },
+      {
+        "source": "npm:rollup@4.52.5",
+        "target": "npm:@rollup/rollup-freebsd-x64@4.52.5",
+        "type": "static"
+      },
+      {
+        "source": "npm:rollup@4.52.5",
+        "target": "npm:@rollup/rollup-linux-arm-gnueabihf@4.52.5",
+        "type": "static"
+      },
+      {
+        "source": "npm:rollup@4.52.5",
+        "target": "npm:@rollup/rollup-linux-arm-musleabihf@4.52.5",
+        "type": "static"
+      },
+      {
+        "source": "npm:rollup@4.52.5",
+        "target": "npm:@rollup/rollup-linux-arm64-gnu@4.52.5",
+        "type": "static"
+      },
+      {
+        "source": "npm:rollup@4.52.5",
+        "target": "npm:@rollup/rollup-linux-arm64-musl@4.52.5",
+        "type": "static"
+      },
+      {
+        "source": "npm:rollup@4.52.5",
+        "target": "npm:@rollup/rollup-linux-loong64-gnu@4.52.5",
+        "type": "static"
+      },
+      {
+        "source": "npm:rollup@4.52.5",
+        "target": "npm:@rollup/rollup-linux-ppc64-gnu@4.52.5",
+        "type": "static"
+      },
+      {
+        "source": "npm:rollup@4.52.5",
+        "target": "npm:@rollup/rollup-linux-riscv64-gnu@4.52.5",
+        "type": "static"
+      },
+      {
+        "source": "npm:rollup@4.52.5",
+        "target": "npm:@rollup/rollup-linux-riscv64-musl@4.52.5",
+        "type": "static"
+      },
+      {
+        "source": "npm:rollup@4.52.5",
+        "target": "npm:@rollup/rollup-linux-s390x-gnu@4.52.5",
+        "type": "static"
+      },
+      {
+        "source": "npm:rollup@4.52.5",
+        "target": "npm:@rollup/rollup-linux-x64-gnu@4.52.5",
+        "type": "static"
+      },
+      {
+        "source": "npm:rollup@4.52.5",
+        "target": "npm:@rollup/rollup-linux-x64-musl@4.52.5",
+        "type": "static"
+      },
+      {
+        "source": "npm:rollup@4.52.5",
+        "target": "npm:@rollup/rollup-openharmony-arm64@4.52.5",
+        "type": "static"
+      },
+      {
+        "source": "npm:rollup@4.52.5",
+        "target": "npm:@rollup/rollup-win32-arm64-msvc@4.52.5",
+        "type": "static"
+      },
+      {
+        "source": "npm:rollup@4.52.5",
+        "target": "npm:@rollup/rollup-win32-ia32-msvc@4.52.5",
+        "type": "static"
+      },
+      {
+        "source": "npm:rollup@4.52.5",
+        "target": "npm:@rollup/rollup-win32-x64-gnu@4.52.5",
+        "type": "static"
+      },
+      {
+        "source": "npm:rollup@4.52.5",
+        "target": "npm:@rollup/rollup-win32-x64-msvc@4.52.5",
+        "type": "static"
+      },
+      {
+        "source": "npm:rollup@4.52.5",
+        "target": "npm:@types/estree@1.0.8",
+        "type": "static"
+      },
+      {
+        "source": "npm:rollup@4.52.5",
         "target": "npm:fsevents@2.3.3",
         "type": "static"
       }
@@ -72253,7 +72694,7 @@
       },
       {
         "source": "npm:sharp",
-        "target": "npm:@img/sharp-libvips-linux-x64@1.0.4",
+        "target": "npm:@img/sharp-libvips-linux-x64",
         "type": "static"
       },
       {
@@ -72283,7 +72724,7 @@
       },
       {
         "source": "npm:sharp",
-        "target": "npm:@img/sharp-linux-x64@0.33.5",
+        "target": "npm:@img/sharp-linux-x64",
         "type": "static"
       },
       {
@@ -72308,7 +72749,7 @@
       },
       {
         "source": "npm:sharp",
-        "target": "npm:@img/sharp-win32-x64",
+        "target": "npm:@img/sharp-win32-x64@0.33.5",
         "type": "static"
       },
       {
@@ -75785,5 +76226,5 @@
   },
   "version": "6.0",
   "errors": [],
-  "computedAt": 1761398237275
+  "computedAt": 1788247762572
 }

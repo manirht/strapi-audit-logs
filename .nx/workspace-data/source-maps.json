@@ -9874,14 +9874,6 @@
       "packages/plugins/audit-logs/package.json",
       "nx/core/package-json"
     ],
-    "metadata.targetGroups.NPM Scripts.4": [
-      "packages/plugins/audit-logs/package.json",
-      "nx/core/package-json"
-    ],
-    "metadata.targetGroups.NPM Scripts.5": [
-      "packages/plugins/audit-logs/package.json",
-      "nx/core/package-json"
-    ],
     "metadata.description": [
       "packages/plugins/audit-logs/package.json",
       "nx/core/package-json"
@@ -9934,6 +9926,62 @@
       "packages/plugins/audit-logs/package.json",
       "nx/core/package-json"
     ],
+    "targets.build:code": [
+      "packages/plugins/audit-logs/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.build:code.executor": [
+      "packages/plugins/audit-logs/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.build:code.options": [
+      "packages/plugins/audit-logs/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.build:code.metadata": [
+      "packages/plugins/audit-logs/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.build:code.options.script": [
+      "packages/plugins/audit-logs/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.build:code.metadata.scriptContent": [
+      "packages/plugins/audit-logs/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.build:code.metadata.runCommand": [
+      "packages/plugins/audit-logs/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.build:types": [
+      "packages/plugins/audit-logs/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.build:types.executor": [
+      "packages/plugins/audit-logs/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.build:types.options": [
+      "packages/plugins/audit-logs/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.build:types.metadata": [
+      "packages/plugins/audit-logs/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.build:types.options.script": [
+      "packages/plugins/audit-logs/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.build:types.metadata.scriptContent": [
+      "packages/plugins/audit-logs/package.json",
+      "nx/core/package-json"
+    ],
+    "targets.build:types.metadata.runCommand": [
+      "packages/plugins/audit-logs/package.json",
+      "nx/core/package-json"
+    ],
     "targets.clean": [
       "packages/plugins/audit-logs/package.json",
       "nx/core/package-json"
@@ -9959,118 +10007,6 @@
       "nx/core/package-json"
     ],
     "targets.clean.metadata.runCommand": [
-      "packages/plugins/audit-logs/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.lint": [
-      "packages/plugins/audit-logs/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.lint.executor": [
-      "packages/plugins/audit-logs/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.lint.options": [
-      "packages/plugins/audit-logs/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.lint.metadata": [
-      "packages/plugins/audit-logs/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.lint.options.script": [
-      "packages/plugins/audit-logs/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.lint.metadata.scriptContent": [
-      "packages/plugins/audit-logs/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.lint.metadata.runCommand": [
-      "packages/plugins/audit-logs/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.test:unit": [
-      "packages/plugins/audit-logs/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.test:unit.executor": [
-      "packages/plugins/audit-logs/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.test:unit.options": [
-      "packages/plugins/audit-logs/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.test:unit.metadata": [
-      "packages/plugins/audit-logs/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.test:unit.options.script": [
-      "packages/plugins/audit-logs/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.test:unit.metadata.scriptContent": [
-      "packages/plugins/audit-logs/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.test:unit.metadata.runCommand": [
-      "packages/plugins/audit-logs/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.test:unit:watch": [
-      "packages/plugins/audit-logs/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.test:unit:watch.executor": [
-      "packages/plugins/audit-logs/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.test:unit:watch.options": [
-      "packages/plugins/audit-logs/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.test:unit:watch.metadata": [
-      "packages/plugins/audit-logs/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.test:unit:watch.options.script": [
-      "packages/plugins/audit-logs/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.test:unit:watch.metadata.scriptContent": [
-      "packages/plugins/audit-logs/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.test:unit:watch.metadata.runCommand": [
-      "packages/plugins/audit-logs/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.watch": [
-      "packages/plugins/audit-logs/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.watch.executor": [
-      "packages/plugins/audit-logs/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.watch.options": [
-      "packages/plugins/audit-logs/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.watch.metadata": [
-      "packages/plugins/audit-logs/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.watch.options.script": [
-      "packages/plugins/audit-logs/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.watch.metadata.scriptContent": [
-      "packages/plugins/audit-logs/package.json",
-      "nx/core/package-json"
-    ],
-    "targets.watch.metadata.runCommand": [
       "packages/plugins/audit-logs/package.json",
       "nx/core/package-json"
     ],
@@ -10110,27 +10046,39 @@
       "nx.json",
       "nx/target-defaults"
     ],
-    "targets.lint.inputs": [
+    "targets.build:code.inputs": [
       "nx.json",
       "nx/target-defaults"
     ],
-    "targets.lint.cache": [
+    "targets.build:code.outputs": [
       "nx.json",
       "nx/target-defaults"
     ],
-    "targets.lint.parallelism": [
+    "targets.build:code.cache": [
       "nx.json",
       "nx/target-defaults"
     ],
-    "targets.test:unit.inputs": [
+    "targets.build:code.parallelism": [
       "nx.json",
       "nx/target-defaults"
     ],
-    "targets.test:unit.cache": [
+    "targets.build:types.inputs": [
       "nx.json",
       "nx/target-defaults"
     ],
-    "targets.test:unit.parallelism": [
+    "targets.build:types.outputs": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.build:types.dependsOn": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.build:types.cache": [
+      "nx.json",
+      "nx/target-defaults"
+    ],
+    "targets.build:types.parallelism": [
       "nx.json",
       "nx/target-defaults"
     ]
